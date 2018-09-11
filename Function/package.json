@@ -1,0 +1,20 @@
+{
+  "name": "vscode-issue-tracker",
+  "version": "1.0.0",
+  "description": "Lambda function to see open and closed issue count on microsoft/vscode github repo",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm rebuild grpc --target=8.10.0 --target_arch=x64 --target_platform=linux --target_libc=glibc",
+    "clean": "rm vscodeFunc.zip",
+    "deploy": "zip -r vscodeFunc.zip * && aws lambda update-function-code --function-name \"vscode-issue-tracker\" --zip-file fileb://vscodeFunc.zip"
+  },
+  "keywords": [],
+  "author": "Benjamin Lannon",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv-extended": "^2.2.0",
+    "firebase-admin": "^6.0.0",
+    "moment": "^2.22.2",
+    "node-fetch": "^2.2.0"
+  }
+}
