@@ -97,4 +97,11 @@ db.collection("entries")
     } issues compared to a day ago (${dayAgoEntry.openIssues} to ${
       nowEntry.openIssues
     })`;
+
+    const totalDiffElement = document.getElementById("totalDiff");
+
+    totalDiffElement.innerHTML = `On Sept 10, 2018 at 8:41PM EST, There was 5299 issues, now there are ${
+      nowEntry.openIssues
+    } for a total difference of <b>${5299 -
+      nowEntry.openIssues} issues</b> since I started tracking this.`;
   });
