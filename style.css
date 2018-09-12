@@ -10,6 +10,14 @@ body {
   margin: 30px 0;
 }
 
+.color-red {
+  color: red;
+}
+
+.color-green {
+  color: green;
+}
+
 a {
   color: inherit;
 }
