@@ -29,6 +29,47 @@ db.collection("entries")
 
     entries = entries.reverse();
 
+    let now = moment.unix(entries[0].data().timestamp);
+    let nextDayOne = now
+      .add(1, "day")
+      .startOf("day")
+      .unix();
+    let nextDayTwo = now
+      .add(1, "days")
+      .startOf("day")
+      .unix();
+    let nextDayThree = now
+      .add(1, "days")
+      .startOf("day")
+      .unix();
+    let nextDayFour = now
+      .add(1, "days")
+      .startOf("day")
+      .unix();
+
+    const gridLines = [];
+
+    gridLines.push({
+      value: nextDayOne,
+      text: moment.unix(nextDayOne).format("ddd, MMMM Do"),
+      position: "end"
+    });
+    gridLines.push({
+      value: nextDayTwo,
+      text: moment.unix(nextDayTwo).format("ddd, MMMM Do"),
+      position: "end"
+    });
+    gridLines.push({
+      value: nextDayThree,
+      text: moment.unix(nextDayThree).format("ddd, MMMM Do"),
+      position: "end"
+    });
+    gridLines.push({
+      value: nextDayFour,
+      text: moment.unix(nextDayFour).format("ddd, MMMM Do"),
+      position: "end"
+    });
+
     for (let entry of entries) {
       const { timestamp, openIssues } = entry.data();
 
@@ -71,6 +112,11 @@ db.collection("entries")
       },
       size: {
         height: 400
+      },
+      grid: {
+        x: {
+          lines: gridLines
+        }
       }
     });
 
