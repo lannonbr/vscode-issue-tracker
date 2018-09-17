@@ -64,8 +64,6 @@ getData(3 * 24).then(entries => {
     }
   ];
 
-  console.log(gridLines);
-
   for (let entry of entries) {
     const { timestamp, openIssues } = entry.data();
 
@@ -122,6 +120,11 @@ getData(3 * 24).then(entries => {
     let timesArr = [];
     let openIssueArr = [];
 
+    const firstTimestamp = entries[entries.length - 1].data().timestamp;
+    const lastTimestamp = entries[0].data().timestamp;
+
+    const gridlines = getGridLines(firstTimestamp, lastTimestamp);
+
     entries = entries.reverse().filter((_, idx) => idx % 4 === 0);
 
     for (let entry of entries) {
@@ -166,6 +169,11 @@ getData(3 * 24).then(entries => {
       },
       size: {
         height: 400
+      },
+      grid: {
+        x: {
+          lines: gridlines
+        }
       }
     });
   });
@@ -203,6 +211,31 @@ function fillDiffs(nowEntry, dayAgoEntry) {
     are ${nowEntry.openIssues} for a total difference of
     <b>${5299 - nowEntry.openIssues} issues</b> since I started tracking this.
   `;
+}
+
+function getGridLines(firstTimestamp, lastTimestamp) {
+  const gridlines = [];
+
+  let firstDay = moment
+    .unix(firstTimestamp)
+    .add(1, "days")
+    .startOf("day");
+  let lastDay = moment.unix(lastTimestamp).startOf("day");
+
+  let numOfDays = lastDay.diff(firstDay, "days");
+
+  for (let i = 0; i < numOfDays + 1; i++) {
+    gridlines.push({
+      value: firstDay.unix(),
+      text: firstDay.format("ddd, MMMM Do")
+    });
+
+    firstDay = firstDay.add(1, "day").startOf("day");
+  }
+
+  console.log(gridlines);
+
+  return gridlines;
 }
 
 function getData(hours) {
