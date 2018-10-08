@@ -14,16 +14,20 @@ const settings = {
 
 db.settings(settings);
 
-getData(3 * 24).then(entries => {
+
+let entries72 = window.vsIssueTrackerDataPoints.slice(0, 72);
+let entries720 = window.vsIssueTrackerDataPoints;
+
+// getData(3 * 24).then(entries => {
   let timesArr = [];
   let openIssueArr = [];
 
-  const nowEntry = entries[0].data();
-  const dayAgoEntry = entries[23].data();
+  const nowEntry = entries72[0];
+  const dayAgoEntry = entries72[23];
 
-  entries = entries.reverse();
+  entries = entries72.reverse();
 
-  let now = moment.unix(entries[0].data().timestamp);
+  let now = moment.unix(entries72[0].timestamp);
   let nextDayOne = now
     .add(1, "day")
     .startOf("day")
@@ -64,8 +68,8 @@ getData(3 * 24).then(entries => {
     }
   ];
 
-  for (let entry of entries) {
-    const { timestamp, openIssues } = entry.data();
+  for (let entry of entries72) {
+    const { timestamp, openIssues } = entry;
 
     timesArr.push(timestamp);
     openIssueArr.push(openIssues);
@@ -116,19 +120,19 @@ getData(3 * 24).then(entries => {
 
   fillDiffs(nowEntry, dayAgoEntry);
 
-  getData(720).then(entries => {
-    let timesArr = [];
-    let openIssueArr = [];
+  // getData(720).then(entries => {
+    timesArr = [];
+    openIssueArr = [];
 
-    const firstTimestamp = entries[entries.length - 1].data().timestamp;
-    const lastTimestamp = entries[0].data().timestamp;
+    const firstTimestamp = entries720[entries720.length - 1].timestamp;
+    const lastTimestamp = entries720[0].timestamp;
 
     const gridlines = getGridLines(firstTimestamp, lastTimestamp);
 
-    entries = entries.reverse().filter((_, idx) => idx % 4 === 0);
+    entries720 = entries720.reverse().filter((_, idx) => idx % 4 === 0);
 
-    for (let entry of entries) {
-      const { timestamp, openIssues } = entry.data();
+    for (let entry of entries720) {
+      const { timestamp, openIssues } = entry;
 
       timesArr.push(timestamp);
       openIssueArr.push(openIssues);
@@ -176,8 +180,8 @@ getData(3 * 24).then(entries => {
         }
       }
     });
-  });
-});
+//   });
+// });
 
 function fillDiffs(nowEntry, dayAgoEntry) {
   let diff = nowEntry.openIssues - dayAgoEntry.openIssues;
@@ -237,14 +241,4 @@ function getGridLines(firstTimestamp, lastTimestamp) {
   console.log(gridlines);
 
   return gridlines;
-}
-
-function getData(hours) {
-  return new Promise(resolve => {
-    db.collection("entries")
-      .orderBy("timestamp", "desc")
-      .limit(hours)
-      .get()
-      .then(querySnapshot => resolve(querySnapshot.docs));
-  });
 }

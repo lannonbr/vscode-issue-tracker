@@ -1,0 +1,23 @@
+{
+  "name": "vscode-issue-tracker",
+  "version": "1.0.0",
+  "description": "A simple website to present how many issues are open over time for [microsoft/vscode](https://github.com/microsoft/vscode). I Wanted to visualize the progress on [microsoft/vscode#58336](https://github.com/Microsoft/vscode/issues/58336) so I used the Github API to graph open issues over time for VS Code",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lannonbr/vscode-issue-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lannonbr/vscode-issue-tracker/issues"
+  },
+  "homepage": "https://github.com/lannonbr/vscode-issue-tracker#readme",
+  "dependencies": {
+    "firebase-admin": "^6.0.0"
+  }
+}

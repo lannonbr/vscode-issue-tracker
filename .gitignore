@@ -3,3 +3,4 @@ node_modules
 .env.schema
 accountKey.json
 vscodeFunc.zip
+update-page.sh
