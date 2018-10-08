@@ -25,36 +25,31 @@ const body = state =>
         }`
   });
 
-function getOpenIssues() {
-  return fetch("https://api.github.com/graphql", {
+function getIssues(body) {
+  const url = "https://api.github.com/graphql";
+  const options = {
     method: "POST",
-    body: body("OPEN"),
+    body: body,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
       Authorization: `bearer ${process.env.GITHUB_TOKEN}`
     }
-  })
+  };
+  
+  return fetch(url, options)
     .then(resp => resp.json())
     .then(data => {
       return data.data.repository.issues.totalCount;
     });
 }
 
+function getOpenIssues() {
+  return getIssues(body("OPEN"));
+}
+
 function getClosedIssues() {
-  return fetch("https://api.github.com/graphql", {
-    method: "POST",
-    body: body("CLOSED"),
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `bearer ${process.env.GITHUB_TOKEN}`
-    }
-  })
-    .then(resp => resp.json())
-    .then(data => {
-      return data.data.repository.issues.totalCount;
-    });
+  return getIssues(body("CLOSED"));
 }
 
 exports.handler = async (event, context) => {
