@@ -7,7 +7,11 @@ let openIssueArr = [];
 const nowEntry = entries72[0];
 const dayAgoEntry = entries72[23];
 
-entries = entries72.reverse();
+const threeDaysAgoUnix = moment.unix(nowEntry.timestamp).subtract(3, 'days').unix()
+
+entries72 = entries72
+  .reverse()
+  .filter(entry => entry.timestamp > threeDaysAgoUnix);
 
 let now = moment.unix(entries72[0].timestamp);
 let nextDayOne = now
@@ -110,7 +114,12 @@ const lastTimestamp = entries720[0].timestamp;
 
 const gridlines = getGridLines(firstTimestamp, lastTimestamp);
 
-entries720 = entries720.reverse().filter((_, idx) => idx % 4 === 0);
+const monthAgoUnix = moment.unix(lastTimestamp).subtract(1, 'month').unix();
+
+entries720 = entries720
+  .reverse()
+  .filter(entry => entry.timestamp > monthAgoUnix)
+  .filter((_, idx) => idx % 4 === 0);
 
 for (let entry of entries720) {
   const { timestamp, openIssues } = entry;
