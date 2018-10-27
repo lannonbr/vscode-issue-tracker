@@ -7,7 +7,10 @@ let openIssueArr = [];
 const nowEntry = entries72[0];
 const dayAgoEntry = entries72[23];
 
-const threeDaysAgoUnix = moment.unix(nowEntry.timestamp).subtract(3, 'days').unix()
+const threeDaysAgoUnix = moment
+  .unix(nowEntry.timestamp)
+  .subtract(3, "days")
+  .unix();
 
 entries72 = entries72
   .reverse()
@@ -114,7 +117,10 @@ const lastTimestamp = entries720[0].timestamp;
 
 const gridlines = getGridLines(firstTimestamp, lastTimestamp);
 
-const monthAgoUnix = moment.unix(lastTimestamp).subtract(1, 'month').unix();
+const monthAgoUnix = moment
+  .unix(lastTimestamp)
+  .subtract(1, "month")
+  .unix();
 
 entries720 = entries720
   .reverse()
@@ -199,10 +205,11 @@ function fillDiffs(nowEntry, dayAgoEntry) {
   const totalDiffElement = document.getElementById("totalDiff");
 
   totalDiffElement.innerHTML = `
-    On Sept 10, 2018 at 8:41PM EST, there were 49181 closed issues. Now there
-    are ${nowEntry.closedIssues} closed issues, for a total difference of
-    <b>${nowEntry.closedIssues -
-      49181} issues</b> that have been closed since I started tracking this.
+    On Sept 10, 2018 at 8:41PM EST, there were 49,181 closed issues. Now there
+    are ${nowEntry.closedIssues.toLocaleString()} closed issues, for a total difference of
+    <b>${(
+      nowEntry.closedIssues - 49181
+    ).toLocaleString()} issues</b> that have been closed since I started tracking this.
   `;
 }
 
