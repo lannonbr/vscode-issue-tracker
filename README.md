@@ -6,6 +6,8 @@ The VS Code Issue Tracker is a visualization of the issue count on the [Microsof
 
 The initial inspiration for this was to track the progress of [microsoft/vscode#58336](https://github.com/Microsoft/vscode/issues/58336).
 
+You can visit the site live here: [vscode-issue-tracker.netlify.com](https://vscode-issue-tracker.netlify.com/)
+
 # Webstack Description
 
 The basis of the issue tracker is a serverless backend combined with a static frontend.
