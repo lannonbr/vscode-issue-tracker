@@ -17,7 +17,7 @@ const body = state =>
   JSON.stringify({
     query: `
         query {
-            repository(owner: "Microsoft", name:"vscode") {
+            repository(owner: "Microsoft", name:"azuredatastudio") {
                 issues(states:${state}) {
                   totalCount
                 }
