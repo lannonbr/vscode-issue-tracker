@@ -70,6 +70,9 @@ var chart = c3.generate({
     x: "x",
     columns: [["x", ...timesArr], ["open issues", ...openIssueArr]]
   },
+  subchart: {
+    show: true
+  },
   axis: {
     y: {
       tick: {
@@ -139,6 +142,9 @@ var chart = c3.generate({
   data: {
     x: "x",
     columns: [["x", ...timesArr], ["open issues", ...openIssueArr]]
+  },
+  subchart: {
+    show: true
   },
   axis: {
     y: {
