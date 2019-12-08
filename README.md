@@ -18,4 +18,4 @@ Then, I have a scheduled job to pull the last 3 days as well as last month of en
 
 Finally, I wrote a simple frontend using [C3.js](https://c3js.org/) to display the two graphs on a page. This is then committed to GitHub here and deployed to [Netlify](https://www.netlify.com/) across their Application Delivery Network.
 
-Future plans include making this more generalized so anyone can spin up a very similar project with ease.
+Future plans include making this more generalized so anyone can spin up a very similar project with ease. And [B1nj0y](https://github.com/gingerhot) had forked and made a [GitHub Action](https://github.com/marketplace/actions/github-issue-tracker) that you can set up in several minutes to track any of your GitHub repos. 
