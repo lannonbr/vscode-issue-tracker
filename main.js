@@ -64,14 +64,30 @@ for (let entry of entries72) {
   openIssueArr.push(openIssues);
 }
 
-var chart = c3.generate({
+var chart = bb.generate({
   bindto: "#hourChart",
   data: {
     x: "x",
     columns: [["x", ...timesArr], ["open issues", ...openIssueArr]]
   },
+  color: {
+    pattern: ["#1d77b4"]
+  },
   subchart: {
-    show: true
+    show: true,
+    showHandle: true,
+    axis: {
+      x: {
+        tick: {
+          show: false
+        }
+      }
+    }
+  },
+  point: {
+    focus: {
+      only: true
+    }
   },
   axis: {
     y: {
@@ -82,6 +98,7 @@ var chart = c3.generate({
       }
     },
     x: {
+      height: 50,
       tick: {
         format: function(d) {
           return moment.unix(d).format("llll");
@@ -106,6 +123,9 @@ var chart = c3.generate({
   grid: {
     x: {
       lines: gridLines
+    },
+    lines: {
+      front: false
     }
   }
 });
@@ -137,14 +157,30 @@ for (let entry of entries720) {
   openIssueArr.push(openIssues);
 }
 
-var chart = c3.generate({
+var chart = bb.generate({
   bindto: "#tenDayChart",
   data: {
     x: "x",
     columns: [["x", ...timesArr], ["open issues", ...openIssueArr]]
   },
+  color: {
+    pattern: ["#1d77b4"]
+  },
   subchart: {
-    show: true
+    show: true,
+    showHandle: true,
+    axis: {
+      x: {
+        tick: {
+          show: false
+        }
+      }
+    }
+  },
+  point: {
+    focus: {
+      only: true
+    }
   },
   axis: {
     y: {
@@ -155,6 +191,7 @@ var chart = c3.generate({
       }
     },
     x: {
+      height: 40,
       tick: {
         format: function(d) {
           return moment.unix(d).format("llll");
@@ -179,6 +216,9 @@ var chart = c3.generate({
   grid: {
     x: {
       lines: gridlines
+    },
+    lines: {
+      front: false
     }
   }
 });
@@ -238,8 +278,6 @@ function getGridLines(firstTimestamp, lastTimestamp) {
 
     firstDay = firstDay.add(1, "day").startOf("day");
   }
-
-  console.log(gridlines);
 
   return gridlines;
 }
