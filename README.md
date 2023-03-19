@@ -1,3 +1,7 @@
+# NOTICE
+
+This site is considered deprecated and no longer collecting data on the VS Code github repo. See the following blogpost for info: [VSCode Issue Tracker Post Mortem](https://lannonbr.com/blog/vscode-issue-tracker-post-mortem/)
+
 # VS Code Issue Tracker
 
 ![Issue Tracker Screenshot](images/issueTrackerPreview.png)
